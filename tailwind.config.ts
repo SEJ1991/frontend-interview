@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        "full-vh": "var(--full-vh)",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

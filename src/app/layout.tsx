@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,8 +27,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script
+        id="initial-environment-script"
+        dangerouslySetInnerHTML={{
+          __html: `
+          const initVh = document.documentElement.clientHeight * 0.01;
+          document.documentElement.style.setProperty('--full-px', initVh + 'px');
+
+          const handleResize = () => {
+            const newVh = document.documentElement.clientHeight * 0.01;
+            document.documentElement.style.setProperty('--full-px', (newVh < 6 ? 6 : newVh) + 'px');
+          };
+
+          window.addEventListener('resize', handleResize);
+          `,
+        }}
+      />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased w-lvw h-lvh`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-auto h-full-vh`}
       >
         {children}
       </body>
