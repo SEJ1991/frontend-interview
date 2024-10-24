@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { Subject } from "@/types/commonTypes";
-import { getQuestions } from "@/libs/common";
+import { getQuestions, getRandomQuestion } from "@/libs/common";
 import Paper from "./_components/Paper";
 
 interface Params {
@@ -12,7 +12,11 @@ interface Params {
 }
 export default function SubjectPage({ params }: Params) {
   const { subject } = params;
-  const { questions, initIndex, initUsedIndexes } = getQuestions(subject);
+  const questions = getQuestions(subject);
+  const { index, usedIndexes } = getRandomQuestion({
+    questions,
+    usedIndexes: [],
+  });
 
   return (
     <>
@@ -28,8 +32,8 @@ export default function SubjectPage({ params }: Params) {
         </h1>
         <Paper
           questions={questions}
-          initIndex={initIndex}
-          initUsedIndexes={initUsedIndexes}
+          initIndex={index}
+          initUsedIndexes={usedIndexes}
         />
       </div>
     </>

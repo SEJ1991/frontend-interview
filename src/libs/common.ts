@@ -18,11 +18,7 @@ export function getCategories(): Category[] {
   ];
 }
 
-export function getQuestions(subject: Subject): {
-  questions: Question[];
-  initIndex: number;
-  initUsedIndexes: number[];
-} {
+export function getQuestions(subject: Subject): Question[] {
   const questions = {
     cs: [
       {
@@ -156,25 +152,11 @@ export function getQuestions(subject: Subject): {
     ],
   };
 
-  let refineQuestions = [];
   if (subject === "all") {
-    refineQuestions = Object.values(questions).reduce(
-      (acc, cur) => acc.concat(cur),
-      []
-    );
+    return Object.values(questions).reduce((acc, cur) => acc.concat(cur), []);
   } else {
-    refineQuestions = questions[subject];
+    return questions[subject];
   }
-
-  const { usedIndexes, index } = getRandomQuestion({
-    usedIndexes: [],
-    questions: refineQuestions,
-  });
-  return {
-    questions: refineQuestions,
-    initIndex: index,
-    initUsedIndexes: usedIndexes,
-  };
 }
 
 export const getRandomQuestion = ({
