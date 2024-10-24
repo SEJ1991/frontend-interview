@@ -68,23 +68,32 @@ export default function Paper({
   const isPrevDisabled = position === 0;
   const isNextDisabled = position === questions.length - 1;
 
-  const { question, answer } = questions[currentIndex];
+  const { question, answers } = questions[currentIndex];
   return (
     <div className="w-full h-full relative flex flex-col items-center justify-center gap-8">
       <h1 className="text-2xl font-bold select-none">
-        {subject.toUpperCase()} ({`${position}/${questions.length}`})
+        {subject.toUpperCase()} ({`${position + 1}/${questions.length}`})
       </h1>
       <div className="flex flex-col justify-center items-center gap-10">
-        <div className="flex flex-col gap-3 items-center px-4 sm:max-w-screen-sm lg:max-w-screen-lg ">
-          <span className="font-bold text-2xl text-green-600 select-none">
+        <dl className="flex flex-col gap-2 items-center px-4 sm:max-w-screen-sm lg:max-w-screen-lg">
+          <dt className="mb-4 font-bold text-2xl text-green-600 select-none">
             {question}
-          </span>
+          </dt>
           {isShowAnswer ? (
-            <span className="text-xl select-none">{answer}</span>
+            answers.map((answer, index) => (
+              <dd
+                key={`${question}_${index}`}
+                className="self-start text-xl select-none"
+              >
+                <strong className="font-bold">∙</strong> {answer}
+              </dd>
+            ))
           ) : (
-            <Button text="SHOW ANSWER" onClick={handleClickShowAnswer} />
+            <dd>
+              <Button text="SHOW ANSWER" onClick={handleClickShowAnswer} />
+            </dd>
           )}
-        </div>
+        </dl>
         <div className="flex justify-center items-center gap-2">
           <Button
             text="PREV"
