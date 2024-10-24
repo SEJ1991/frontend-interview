@@ -1,4 +1,4 @@
-import { Category, Question, Subject } from "@/types/common";
+import { Category, Question, Subject } from "@/types/commonTypes";
 
 export function getCategories(): Category[] {
   return [

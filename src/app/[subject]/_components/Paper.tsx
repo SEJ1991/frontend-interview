@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-import { Question } from "@/types/common";
+import { Question } from "@/types/commonTypes";
 import { getRandomQuestion } from "@/libs/common";
 import Button from "./Button";
 

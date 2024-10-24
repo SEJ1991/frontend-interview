@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { Subject } from "@/types/common";
+import { Subject } from "@/types/commonTypes";
 import { getQuestions } from "@/libs/common";
 import Paper from "./_components/Paper";
 
