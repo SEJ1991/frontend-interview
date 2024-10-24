@@ -26,16 +26,12 @@ export default function SubjectPage({ params }: Params) {
       >
         HOME
       </Link>
-      <div className="w-full h-full relative flex flex-col items-center justify-center gap-8">
-        <h1 className="text-2xl font-bold select-none">
-          {subject.toUpperCase()}
-        </h1>
-        <Paper
-          questions={questions}
-          initIndex={index}
-          initUsedIndexes={usedIndexes}
-        />
-      </div>
+      <Paper
+        subject={subject}
+        questions={questions}
+        initIndex={index}
+        initUsedIndexes={usedIndexes}
+      />
     </>
   );
 }
